@@ -20,7 +20,7 @@ import com.example.SWE645Assignment3.dto.*;
 import com.example.SWE645Assignment3.model.*;
 import com.example.SWE645Assignment3.repository.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class APIController {
 	@Autowired
