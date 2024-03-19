@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<div class="navbar">
+    <ul class="nav nav-tabs" id="navId">
+        <li class="nav-item">
+            <a routerLink="/surveyform" routerLinkActive="active"
+                [ngClass]="{'nav-link': true, 'active': currentRoute === '/surveyform'}">Survey Form</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="/surveydata" routerLinkActive="active"
+                [ngClass]="{'nav-link': true, 'active': currentRoute === '/surveydata'}">Survey Records</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a routerLink="/rxjs" routerLinkActive="active"
+                [ngClass]="{'nav-link': true, 'active': currentRoute === '/rxjs'}">RXJS</a>
+        </li> -->
+        <li class="nav-item">
+            <button [disabled]="!((receivedNotifications$ | async)?.length)" class="bell-icon-container" type="button"
+                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="notification-badge bg-danger border border-light rounded-circle"
+                        *ngIf="(receivedNotifications$ | async)?.length > 0">
+                        {{notificationCount}}
+                    </span>
+                </span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1" data-bs-display="static">
+                <ng-container *ngIf="receivedNotifications$ | async as notifications">
+                    <div *ngIf="notifications.length > 0">
+                        <div *ngFor="let item of notifications; index as i">
+                            <li><a class="dropdown-item" href="#">{{ i + 1 }}. {{ item }}</a></li>
+                        </div>
+                    </div>
+                    <div *ngIf="notifications.length === 0">
+                        <li><a class="dropdown-item" href="#">No notifications</a></li>
+                    </div>
+                </ng-container>
+            </ul>
+
+        </li>
+    </ul>
+</div>
+
+</html>

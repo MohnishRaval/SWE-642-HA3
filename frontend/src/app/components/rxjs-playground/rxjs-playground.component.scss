@@ -1,0 +1,32 @@
+.rxjs-parent-container {
+  position: relative;
+  margin-top: 2%;
+  width: 100%;
+  display: block;
+
+  .challenge-pagination {
+    display: flex;
+    border: 1px solid black;
+    width: 50%;
+    max-height: 300px;
+    min-height: 300px;
+    flex-wrap: wrap;
+    overflow: auto;
+
+    .group {
+      &.even {
+        background-color: aqua;
+      }
+
+      &.odd {
+        background-color: lightblue;
+      }
+    }
+    .button-container{
+      width: 100%;
+      position: sticky;
+      bottom: 0;
+      background: bisque;
+    }
+  }
+}

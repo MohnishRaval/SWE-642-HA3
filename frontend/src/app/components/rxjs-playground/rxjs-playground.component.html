@@ -1,0 +1,31 @@
+<div class="rxjs-parent-container">
+    <h2 style="display: block;">RXJS Playground</h2>
+    <h3>6. Pagination:</h3>
+
+    <div class="challenge-pagination">
+        <div *ngFor="let group of posts;let even=even">
+            <div class="group" [ngClass]="{'group':true,'even':even,'odd':!even}">
+                <li>UserId:{{group.userId}}</li>
+                <li>Id:{{group.id}}</li>
+                <li>Title:{{group.title}}</li>
+                <li>Body:{{group.body}}</li>
+            </div>
+        </div>
+        <div class="button-container">
+            <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+            <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage===10">Next</button>
+        </div>
+    </div>
+
+    <div class="debounce-class">
+        <label>Debounce Implementation</label><input type="search" [formControl]="searchField">
+        <div *ngIf="debounceFilteredValue?.length > 0">
+            <div *ngFor="let i of debounceFilteredValue">
+                <!-- {{debounceFilteredValue[0]?.name}} -->
+                {{i.name}}
+            </div>
+        </div>
+
+    </div>
+
+</div>

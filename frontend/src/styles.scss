@@ -1,0 +1,12 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import '~ngx-spinner/animations/ball-pulse-sync.css';
+@import 'ngx-toastr/toastr.css';
+/* You can add global styles to this file, and also import other style files */
+.content-area {
+    margin-top: 60px; /* Adjust the value as needed to match the height of your navbar */
+  }
+
+  // body.modal-open {
+  //   padding-right: 0px;
+  // }

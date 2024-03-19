@@ -1,0 +1,131 @@
+    .form-main-container {
+      position: relative;
+      display: flex;
+      flex-grow: 1;
+      margin-top: 2%;
+
+      .background-image {
+        position: fixed;
+        //top: 5vh;
+        margin-top: 2%;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-image: url("../../../assets/gmu_background.png");
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+      }
+
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40%;
+      background-color: wheat;
+      padding: 20px;
+      max-height: 75%;
+      overflow-y: auto;
+
+      .button-container {
+        position: sticky;
+        bottom: 0;
+        padding-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        overflow-y: hidden;
+        padding-left: 10%;
+        padding-right: 10%;
+        background-color: dimgray;
+        border-radius: 12px;
+        margin-left: 3%;
+        margin-right: 3%;
+
+        button {
+          width: 40%;
+        }
+      }
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      max-height: 75%;
+      overflow-y: auto;
+
+      input[type] {
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 50%;
+        padding: 5px;
+        font-style: italic;
+
+        // input.raffle-class.ng-valid {
+        //   background-color: #89f752;
+        // }
+        // input.raffle-class.ng-invalid:not(.ng-untouched) {
+        //   background-color: #eb6565;
+        // }
+        &.ng-valid{
+          background-color: #89f752;
+        }
+
+        &.ng-invalid:not(.ng-untouched){
+          background-color: #eb6565;
+        }
+      }
+
+      label {
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 50%;
+      }
+
+      .label-likes {
+        width: fit-content;
+      }
+
+      input.raffle-class {
+        margin-left: 5%;
+        width: 55%;
+      }
+    }
+
+    .checkbox-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 5%;
+
+      label {
+        font-weight: 600;
+      }
+
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      width: 50%;
+
+      label {
+        font-weight: 600;
+        margin-right: 10px;
+      }
+    }
+
+    .recommendation-dropdown {
+      padding-bottom: 10px;
+
+      select {
+        margin-left: 5%;
+        width: 55%;
+        text-align: center;
+      }
+    }

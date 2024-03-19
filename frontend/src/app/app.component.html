@@ -1,0 +1,8 @@
+<div class="app-container">
+    <app-navbar></app-navbar>
+    <app-shared-modal></app-shared-modal>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-pulse-sync" [fullScreen]="true">
+        <p style="color: white"> {{spinnerText$ | async}} </p>
+    </ngx-spinner>
+    <router-outlet></router-outlet>
+</div>

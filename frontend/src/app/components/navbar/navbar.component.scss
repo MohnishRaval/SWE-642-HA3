@@ -1,0 +1,30 @@
+.navbar {
+  z-index: 1;
+  padding: 0;
+  top: 0;
+  background-color: silver;
+  position: fixed;
+  width: 100%;
+}
+
+.bell-icon-container {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  border: none;
+  background-color: transparent;
+  transform: translateY(-50%);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 1ch;
+  right: 1.5ch;
+  transform: translate(50%, -50%);
+  padding: 2px;
+  background-color: red;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  font-size: 9px;
+}
