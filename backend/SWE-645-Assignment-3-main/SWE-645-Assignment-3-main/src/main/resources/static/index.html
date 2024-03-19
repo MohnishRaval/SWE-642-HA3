@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    "use strict";
+    // Function movieTicket() decides if the user has won raffle ticket or not
+    const url = window.location.hostname;
+  	const token = 'Bearer token-j2lmq:m8ckms2sx7zfqlzc82jx8gxc98l5j5twgn6g4rzp4dbrqwtlfxzhf9';
+  	const headers = {'Content-Type': 'application/json'};
+  	const path=window.location.href;
+  	let pathWithoutParams = window.location.pathname;
+    history.replaceState(null, null, pathWithoutParams);
+    
+    
+  	function viewAllSurveys() {
+  fetch(`${path}form/viewAllRecords`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': token,
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    console.log(response);
+    if (response.ok) {
+      alert('All Surveys records fetched successfully!');
+      return response.json();
+    } else {
+      alert('Failed to fetch all Survey records.');
+    }
+  }).then(records => {
+    // Create an HTML table to display the survey records
+    let html = '<table border="1px solid black" style="margin: 0 auto;"><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Survey Date</th></tr></thead><tbody>';
+    records.forEach(record => {
+      const won = record.won ? 'Yes' : 'No';
+      html += `<tr><td>${record.firstName}</td><td>${record.lastName}</td><td>${won}</td><td>${record.surveyDate}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    // Set the HTML content of the modal popup to the table
+    const modal = document.getElementById("myModal");
+    const modalContent = document.getElementById("table-container");
+    modalContent.innerHTML = html;
+    // Open the modal popup
+    modal.style.display = "block";
+    // Close the modal popup when the user clicks on the close button
+    const closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+    // Close the modal popup when the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }).catch(error => {
+    console.error(error);
+    alert('Failed to fetch all Survey records.');
+  });
+}
+
+
+
+    
+    
+    function movieTicket() {
+      let isSubmitFailed=true;
+      let isRaffleWon=false;
+      const raffleWonAlertMessage="Congratulations! You won a free movie ticket.";
+      const raffleLostAlertMessage="Sorry, you didn't win a free movie ticket.";
+      const invalidNumberAlertMessage="Raffle Fields Invalid:Please enter at least 10 comma separated numbers from 1 to 100 in the Raffle field.";
+      const selectRaffleField = document.getElementById("raffle");
+      const inputtedRaffleNumbers = selectRaffleField.value.split(",").map(num => parseInt(num.trim()));
+      const validNumberCheck = inputtedRaffleNumbers.filter(num => num >= 1 && num <= 100);	
+      const targetsum=50;
+      console.log(validNumberCheck);
+      let response = {
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        streetAddress: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        zip: document.getElementById("zip").value,
+        telephoneNumber: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        surveyDate: document.getElementById("date").value,
+        likes: Array.from(document.getElementsByName("checkbox")).filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value),
+        universityInterest: document.querySelector('input[name="interested"]:checked')?.value || "",
+        recommendation: document.getElementById("recommendation").value,
+        comments: document.getElementById("comments").value,
+        won: false,
+        numbersEntered: "",
+      };
+      //Raffle field is empty
+      if(inputtedRaffleNumbers.length === 1 && isNaN(inputtedRaffleNumbers[0])){
+    	  isSubmitFailed=false;
+      } else{
+    	  if(validNumberCheck.length >= 4){
+    		  isSubmitFailed=false;
+    		  let curr_sum=0;
+    		  for (let i = 0; i < validNumberCheck.length; i++) {
+    			  curr_sum += validNumberCheck[i];
+    			}
+    		  if(curr_sum>=targetsum){
+    			  isRaffleWon=true;
+    			  isSubmitFailed=false;
+    		  }
+    	  } else{
+    		  isSubmitFailed=true;
+    	  }
+      }
+      if(isSubmitFailed==true){
+    	  alert(invalidNumberAlertMessage);
+    	  return false;
+      } else{
+    	  if(isRaffleWon==true){
+    		  alert(raffleWonAlertMessage);
+    		  response.won=true;
+    	  }else{
+    		  alert(raffleLostAlertMessage);
+    		  response.won=false;
+    	  }
+    	  fetch(`${path}form/submit`, {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify(response)
+            }).then(response => {
+              if (response.ok) {
+                alert('Form submitted successfully!');
+              } else {
+                alert('Failed to submit form.');
+              }
+            }).catch(error => {
+              console.error(error);
+              //alert('An error occurred while submitting the form.');
+            });
+    	  return true;
+      }
+    }
+  </script>
+  <head>
+    <title>Student Survey Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+  <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="table-container" style="height: 300px; overflow-y: scroll;"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="column"></div>
+      <div class="column form-1">
+        <div class="formclass">
+          <form onsubmit="return movieTicket()" autocomplete="on">
+            <div class="img-heading">
+              <div class="img-heading-left">
+                <img src="logo.png" alt="logo" />
+              </div>
+              <div class="img-heading-right">
+                <h2>Student Survey Form</h2>
+              </div>
+            </div>
+            <label for="firstName">First Name:</label>
+            <input type="text" placeholder="first name" id="firstName" name="firstName" pattern="[a-zA-Z ]+" required>
+            <label for="lastName">Last Name:</label>
+            <input type="text" placeholder="last name" id="lastName" name="lastName" pattern="[a-zA-Z ]+" required>
+            <label for="address">Street Address:</label>
+            <input type="text" placeholder="address" id="address" name="address" required>
+            <label for="city">City:</label>
+            <input type="text" placeholder="city" id="city" name="city" pattern="[a-zA-Z ]+" required>
+            <label for="state">State:</label>
+            <input type="text" placeholder="state" id="state" name="state" pattern="[a-zA-Z ]+" required>
+            <label for="zip">Zip Code:</label>
+            <input type="text" placeholder="zipcode" id="zip" name="zip" pattern="^[0-9]*$" required>
+            <label for="phone">Telephone Number:</label>
+            <input type="tel" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" name="phone" required>
+            <label for="email">Email:</label>
+            <input type="email" placeholder="email" id="email" name="email" required>
+            <label for="date">Date of Survey:</label>
+            <input type="date" id="date" name="date" required>
+            <label class="label-likes" for="likes">What did you like most about the campus?</label>
+            <div class="left">
+              <ul>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionStudent" />Students </label>
+                </li>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionLocation" />Location </label>
+                </li>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionCampus" />Campus </label>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionAtmosphere" />Atmosphere </label>
+                </li>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionDormRooms" />Dorm Rooms </label>
+                </li>
+                <li>
+                  <label class="label-likes" style="word-wrap:break-word">
+                    <input id="checkid" type="checkbox" name="checkbox" value="optionSports" />sports </label>
+                </li>
+              </ul>
+            </div>
+            <br>
+            <label class="label-interest" for="interest">How did you become interested in the university?</label>
+            <div class="left">
+              <ul>
+                <li>
+                  <label class="label-interest" style="word-wrap:break-word">
+                    <input id="checkid" type="radio" name="interested" value="Friends" />Friends </label>
+                </li>
+                <li>
+                  <label class="label-interest" style="word-wrap:break-word">
+                    <input id="checkid" type="radio" name="interested" value="Television" />Television </label>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                  <label class="label-interest" style="word-wrap:break-word">
+                    <input id="checkid" type="radio" name="interested" value="Internet" />Internet </label>
+                </li>
+                <li>
+                  <label class="label-interest" style="word-wrap:break-word">
+                    <input id="checkid" type="radio" name="interested" value="Other" />Other </label>
+                </li>
+              </ul>
+            </div>
+            <br>
+            <div class="dropdown-class">
+              <label for="recommendation">Likelihood of Recommending this School</label>
+              <select name="recommendation" id="recommendation">
+                <option selected disabled value="defaultOption">Select Option</option>
+                <option value="Very Likely">Very Likely</option>
+                <option value="Likely">Likely</option>
+                <option value="Unlikely">Unlikely</option>
+              </select>
+            </div>
+            <label class="label-raffle" for="raffle">Raffle (Enter at least 10 comma separated numbers from 1 to 100):</label>
+            <input type="text" id="raffle" name="raffle">
+            <label class="label-comments" for="comments">Comments:</label>
+            <textarea id="comments" name="comments" rows="5" cols="40" style="resize: vertical; min-height: 7rem;"></textarea>
+            <br>
+            <div class="submit1">
+              <input id="submitbtn" type="submit" value="Submit">
+              <input type="reset" value="Cancel">
+              <button id="viewrecords" onclick="viewAllSurveys()">Fetch Records</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="column"></div>
+    </div>
+  </body>
+</html>

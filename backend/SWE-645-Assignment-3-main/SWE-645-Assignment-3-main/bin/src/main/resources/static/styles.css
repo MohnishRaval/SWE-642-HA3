@@ -1,0 +1,171 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: darkgray;
+  background: url("background-image.jfif");
+}
+.container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+.formclass label {
+    font-weight: bold;
+}
+ .formclass label:not(.label-comments,.dropdown-class > label,.label-interest,.label-likes,.label-raffle):after {
+    color: #e32;
+    content: ' *';
+    display: inline;
+}
+.img-heading-left{
+  width: 30%;
+}
+.img-heading{
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.img-heading-right{
+  width: 70%;
+}
+.img-heading-left img {
+  position: relative;
+  height: 5rem;
+  left: 0rem;
+}
+.left{
+	width: 50%;
+	float: left;
+}
+.right{
+	width: 50%;
+	float: right;
+}
+.column {
+			flex: 1;
+			margin: 10px;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+.form-1{
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+.checkbox-column {
+			column-count: 2;
+			column-gap: 10px;
+		}
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+[type="checkbox"]
+{
+    vertical-align:middle;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: -webkit-fill-available;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+input:required:focus:valid{
+	background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+	border: 1px solid green;
+}
+input:invalid {
+  border-color: red;
+}
+input:not(#submitbtn, #raffle):valid {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+}
+input:focus:invalid{
+	background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg")no-repeat 95% 50% lightsalmon;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  background-color: #4da6ff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: #007acc;
+}
+.submit1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#viewrecords{
+    background-color: #4da6ff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 0rem;
+    cursor: pointer;
+	}
+
+
