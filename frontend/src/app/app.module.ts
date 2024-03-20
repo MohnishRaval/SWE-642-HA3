@@ -4,6 +4,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './components/form/form.component';
@@ -42,7 +43,10 @@ import { ToastrModule } from 'ngx-toastr';
       progressAnimation: 'increasing',
     }),
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
