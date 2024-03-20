@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, forkJoin, from, of, throwError } from 'rxjs';
 import { catchError, map, retry, switchMap, take } from 'rxjs/operators';
 import { IPost, FormPostModel } from '../models/PostModel';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +22,7 @@ export class DataService {
   //FORM Methods
   saveFormDetails(formModel: FormPostModel) {
     return this.http
-      .post<FormPostModel>('http://localhost:8080/form/submit', formModel)
+      .post<FormPostModel>(`${environment.API_URL}/form/submit`, formModel)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           let errorMessage = 'Some Error Occurred';
@@ -37,7 +37,7 @@ export class DataService {
   }
 
   fetchFormDetails() {
-    return this.http.get('http://localhost:8080/form/viewAllRecords');
+    return this.http.get(`${environment.API_URL}/form/viewAllRecords`);
   }
 
   setFormPayload(formData: any) {
