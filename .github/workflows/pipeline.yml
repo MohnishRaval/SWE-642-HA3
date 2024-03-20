@@ -17,32 +17,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Build a Docker image for the client application
-      - name: Build Client Docker Image
-        working-directory: ./frontend
-        # Build image with tag using Git commit SHA
-        run: |
-          docker build -t 19982707/swe642-frontend-${{ github.sha }} .
+      # # Build a Docker image for the client application
+      # - name: Build Client Docker Image
+      #   working-directory: ./frontend
+      #   # Build image with tag using Git commit SHA
+      #   run: |
+      #     docker build -t 19982707/swe642-frontend-${{ github.sha }} .
 
-      # Build a Docker image for the server application
-      - name: Build Server Docker Image
-        working-directory: ./backend/SWE-645-Assignment-3-main/SWE-645-Assignment-3-main
-        # Build image with tag using Git commit SHA
-        run: |
-          docker build -t 19982707/swe642-backend-${{ github.sha }} .
+      # # Build a Docker image for the server application
+      # - name: Build Server Docker Image
+      #   working-directory: ./backend/SWE-645-Assignment-3-main/SWE-645-Assignment-3-main
+      #   # Build image with tag using Git commit SHA
+      #   run: |
+      #     docker build -t 19982707/swe642-backend-${{ github.sha }} .
 
-      # Login to Docker Hub using credentials from repository secrets
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      # # Login to Docker Hub using credentials from repository secrets
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Push the Docker images to Docker Hub
-      - name: Push Docker Images to Docker Hub
-        run: |
-          docker push 19982707/swe642-frontend-${{ github.sha }}
-          docker push 19982707/swe642-backend-${{ github.sha }}
+      # # Push the Docker images to Docker Hub
+      # - name: Push Docker Images to Docker Hub
+      #   run: |
+      #     docker push 19982707/swe642-frontend-${{ github.sha }}
+      #     docker push 19982707/swe642-backend-${{ github.sha }}
 
       - name: SSH into EC2 and pull latest Docker images
         uses: appleboy/ssh-action@v1.0.3
