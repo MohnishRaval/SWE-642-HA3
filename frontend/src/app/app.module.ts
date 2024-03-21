@@ -18,6 +18,7 @@ import { SharedModalComponent } from './shared/shared-modal/shared-modal.compone
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     RxjsPlaygroundComponent,
     SharedModalComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

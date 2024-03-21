@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     public router: Router,
     private customSpinner: CustomspinnerService
   ) {
-    this.router.navigateByUrl('/surveyform');
+    // this.router.navigateByUrl('/surveyform');
   }
 
   ngOnInit(): void {

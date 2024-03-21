@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title of the document -->
+    <title>CS Department Information</title>
+
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Internal styles for the document -->
+    <style>
+        body {
+            padding: 3rem 3rem 0 0;
+            background-image: url(../../../assets/background-image.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background-color: white;
+            margin-left: auto;
+            margin-right: 0;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+        }
+
+        .container h1 {
+            color: #006633;
+        }
+
+        .nav {
+            font-size: 1.65rem;
+            line-height: 2.125rem;
+            font-family: "Roboto Slab", Palatino Linotype, Palatino, serif;
+            font-weight: bold;
+            background-color: #006633;
+            height: 3rem;
+
+        }
+
+        .nav a {
+            color: #ffcc33;
+            transition: color 0.3s;
+            padding: 0.25rem 1rem;
+        }
+
+        .nav a:hover {
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 5px solid #ccc;
+            margin: 1em 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main content container -->
+    <div class="container">
+        <!-- Navigation bar -->
+        <nav class="nav justify-content-center">
+            <a routerLink="/surveyform" routerLinkActive="active">Survey Form</a>
+            <a routerLink="/surveydata" routerLinkActive="active">Survey Records</a>
+        </nav>
+
+        <!-- Heading for the CS Department -->
+        <h1 class="mt-4">Computer Science Department</h1>
+
+        <!-- Description of the Computer Science Department -->
+        <p class="lead">The Department of Computer Science at George Mason University is a vibrant and dynamic academic
+            unit known for offering a comprehensive range of undergraduate and graduate programs in computer science.
+            Located in Fairfax, Virginia, GMU's computer science department benefits from its proximity to the nation's
+            capital, providing students with valuable opportunities for internships and career prospects in the
+            technology sector and government agencies. The department is distinguished by its accomplished faculty,
+            cutting-edge research initiatives spanning various areas of computer science, and state-of-the-art
+            facilities and resources. Additionally, students can engage in student organizations and clubs related to
+            computer science, fostering a collaborative and innovative learning environment.</p>
+        <hr>
+
+        <!-- List of offered courses -->
+        <h2 class="mt-4" style="color: #006633;">George Mason CS Department offers the following courses:</h2>
+        <ul style="font-weight: bold; font-size: 1.25rem; font-weight: 300;">
+            <li>Master of Science in Computer Science (CS)</li>
+            <li>Master of Science in Software Engineering (SWE)</li>
+            <li>Master of Science in Information Systems (INFS)</li>
+            <li>Master of Science in Information Security and Assurance (ISA)</li>
+        </ul>
+        <hr>
+
+        <!-- List of required courses with a table -->
+        <h2 class="mt-4" style="color: #006633;">Required Courses</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover " style="border: 2px solid black;">
+                <thead>
+                    <tr style="background-color: rgba(187, 176, 176, 0.829);">
+                        <th>Degree Name</th>
+                        <th>Course Number</th>
+                        <th>Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows for each course with degree name, course number, and course name -->
+                    <tr>
+                        <td rowspan="2" style="font-weight:bold;">MS in Computer Science</td>
+                        <td>CS 530</td>
+                        <td>Mathematical Foundations of CS</td>
+                    </tr>
+                    <tr>
+                        <td>CS 550</td>
+                        <td>Database Systems</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="font-weight:bold;">MS in Information Security and Assurance</td>
+                        <td>ISA 650</td>
+                        <td>Network Security Policy</td>
+                    </tr>
+                    <tr>
+                        <td>CS 650</td>
+                        <td>Security Audit and Testing</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="font-weight:bold;">MS in Software Engineering</td>
+                        <td>SWE 642</td>
+                        <td>Software Engineering for World Wide Web</td>
+                    </tr>
+                    <tr>
+                        <td>SWE 645</td>
+                        <td>Component-based Software Development</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="font-weight:bold;">MS in Information Systems</td>
+                        <td>INFS 580</td>
+                        <td>Analytics and Big Data</td>
+                    </tr>
+                    <tr>
+                        <td>INFS 611</td>
+                        <td>Rapid Information Systems</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
