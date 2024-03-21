@@ -3,7 +3,12 @@ ng serve --configuration production
 
 # Project Name: SWE-642 CI/CD Pipeline with Angular Frontend and Spring Boot Backend
 
+## Application Workflow
+
 ![alt text](ApplicationFlow.png)
+
+## Devops CI-CD Pipleine Workflow
+
 ![alt text](Devops-Architecture.png)
 
 ## Overview
@@ -22,7 +27,11 @@ This project sets up a continuous integration and continuous deployment (CI/CD) 
 
 5. **Docker Containers**: Both the frontend and backend applications are packaged as Docker containers for easy deployment and portability. These containers are orchestrated using Docker Compose on AWS EC2 instances.
 
-6. **EC2 Instances**: The Docker containers are deployed and run on AWS EC2 instances. The frontend container is exposed on port 4200, while the backend container is exposed on port 8080.
+6. **Cleanup Script**: The cleanup.sh script stops and removes existing Docker containers and images related to the application.
+
+7. **Development/Test Script**: The dev-test.sh script cleans up existing containers and images and then builds and runs new containers for both the frontend and backend components in a development or test environment.
+
+8. **EC2 Instances**: The Docker containers are deployed and run on AWS EC2 instances. The frontend container is exposed on port 4200, while the backend container is exposed on port 8080.
 
 ## Workflow Description
 
@@ -45,14 +54,11 @@ This project sets up a continuous integration and continuous deployment (CI/CD) 
 
 ## Contributors
 
-- [Your Name] - Project Lead
+- **Mohnish Raval** - G01373613
+- **FNU Niharika** -
 
 ## License
 
-This project is licensed under the [License Name] License - see the LICENSE.md file for details.
-
-## Acknowledgments
-
-- Mention any resources or individuals that helped in the development of this project.
+This project is licensed under the MIT License
 
 This README provides a comprehensive overview of the project, including its components, workflow, setup instructions, contributors, license, and acknowledgments. Adjustments can be made based on your specific project details and requirements.
