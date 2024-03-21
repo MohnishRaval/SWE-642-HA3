@@ -15,6 +15,10 @@ ng serve --configuration production
 
 This project sets up a continuous integration and continuous deployment (CI/CD) pipeline for a web application. The application consists of a frontend developed using Angular and a backend developed using Spring Boot. The CI/CD pipeline is orchestrated using GitHub Actions, and the application is deployed on AWS EC2 instances with Docker containers. The database used is Amazon RDS with MySQL.
 
+## Hosting
+
+The application is hosted on http://ec2-18-235-217-2.compute-1.amazonaws.com:4200/
+
 ## Components
 
 1. **Frontend**: The frontend of the application is built using Angular, a modern web development framework. It provides a user interface for interacting with the application.
