@@ -46,9 +46,12 @@
         border-radius: 12px;
         margin-left: 3%;
         margin-right: 3%;
+        padding: 2.5rem;
+        margin-top: 2rem;
 
         button {
           width: 40%;
+          height: fit-content;
         }
       }
     }
@@ -58,6 +61,12 @@
       flex-direction: column;
       max-height: 75%;
       overflow-y: auto;
+      border: 1px solid black;
+
+      .comments{
+        padding: 1rem;
+        margin-left: 1.5rem;
+      }
 
       input[type] {
         margin-bottom: 10px;

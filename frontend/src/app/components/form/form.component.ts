@@ -152,7 +152,7 @@ export class FormComponent implements OnInit, OnDestroy {
     this.spinnerService.hide();
     this.surveyForm.reset();
     setTimeout(() => {
-      this.toastrService.success('Form Rested Successfully');
+      this.toastrService.success('Form Reset Successfully');
     }, 2000);
   };
 
