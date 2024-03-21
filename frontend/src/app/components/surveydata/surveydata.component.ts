@@ -29,7 +29,6 @@ export class SurveydataComponent implements OnInit, OnDestroy {
   columnDefs: ColDef[] = [
     { field: 'firstName', headerName: 'First Name', width: 120 },
     { field: 'lastName', headerName: 'Last Name', width: 120 },
-    { field: 'streetAddress', headerName: 'Address' },
     { field: 'city', headerName: 'City', width: 120 },
     { field: 'state', headerName: 'State', width: 80 },
     { field: 'zipCode', headerName: 'Zipcode', width: 100 },
@@ -37,8 +36,6 @@ export class SurveydataComponent implements OnInit, OnDestroy {
     { field: 'email', headerName: 'Email', width: 150 },
     { field: 'date', headerName: 'Date', width: 120 },
     { field: 'recommendation', headerName: 'Recommendation' },
-    { field: 'raffleNumbers', headerName: 'RaffleNumbers' },
-    { field: 'won', headerName: 'Survey Result' },
   ];
 
   constructor(
