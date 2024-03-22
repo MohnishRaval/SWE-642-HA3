@@ -66,9 +66,16 @@ export class SharedModalComponent implements OnInit, OnDestroy {
     this.spinnerService.show('Form Submitting...');
     const submitFormSub = this.dataService
       .saveFormDetails(this.formPayload)
-      .subscribe((response) => {
-        this.spinnerService.hide();
-      });
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.spinnerService.hide();
+          this.dataService.formAPIStatus(true);
+        },
+        (error) => {
+          this.dataService.formAPIStatus(false);
+        }
+      );
     this.modalSubscriptions.push(submitFormSub);
   }
 

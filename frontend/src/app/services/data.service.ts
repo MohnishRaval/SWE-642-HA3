@@ -11,6 +11,8 @@ import { environment } from '../../environments/environment';
 export class DataService {
   private formPayloadSubject = new Subject<any>();
   public formPayload$ = this.formPayloadSubject.asObservable();
+  private formAPISucessSubject = new Subject<boolean>();
+  public formAPISucess$ = this.formAPISucessSubject.asObservable();
 
   constructor(public router: Router, private http: HttpClient) {}
   postsURL = 'https://jsonplaceholder.typicode.com/todos';
@@ -42,6 +44,11 @@ export class DataService {
 
   setFormPayload(formData: any) {
     this.formPayloadSubject.next(formData);
+  }
+
+  //Form API Status
+  formAPIStatus(success: boolean) {
+    this.formAPISucessSubject.next(success);
   }
 
   //RXJS-Playground

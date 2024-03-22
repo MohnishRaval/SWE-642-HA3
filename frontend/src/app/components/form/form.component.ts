@@ -200,7 +200,15 @@ export class FormComponent implements OnInit, OnDestroy {
         ''
       );
       this.dataService.setFormPayload(formModel);
-      this.surveyForm.reset();
+      this.dataService.formAPISucess$.subscribe((response) => {
+        if (response) {
+          this.resetForm();
+          this.toastrService.success('Form Submitted Successfully');
+        } else {
+          this.toastrService.clear();
+          this.toastrService.error('Form Submission Unsuccessful');
+        }
+      });
     } else {
       const errorMessage = this.sanitizeErrorMessage(
         this.generateErrorMessage()
