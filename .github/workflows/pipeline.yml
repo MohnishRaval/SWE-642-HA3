@@ -5,7 +5,7 @@ name: SWE-642 CI/CD Pipeline
 on:
   push:
     branches:
-      -
+      - main
 
 # This is the workflow that is being run.
 jobs:
