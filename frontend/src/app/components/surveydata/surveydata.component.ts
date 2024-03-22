@@ -84,10 +84,6 @@ export class SurveydataComponent implements OnInit, OnDestroy {
     this.surveyDataSubscriptions.push(displayFormDataSub);
   }
 
-  openModal() {
-    this.modalService.openModal('SurveyData', this.dynamicContent);
-  }
-
   ngOnDestroy(): void {
     this.surveyDataSubscriptions.forEach((subi) => subi.unsubscribe());
   }

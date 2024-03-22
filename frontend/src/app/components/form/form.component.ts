@@ -13,6 +13,7 @@ import {
   FormArray,
   AbstractControl,
 } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -45,9 +46,9 @@ export class FormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private modalService: ModalService,
     private spinnerService: CustomspinnerService,
-    private notificationService: NotificationService,
     private toastrService: ToastrService,
-    private dataService: DataService
+    private dataService: DataService,
+    private sanitizer: DomSanitizer
   ) {
     const currentDate = new Date();
     this.surveyForm = this.fb.group({
@@ -79,7 +80,6 @@ export class FormComponent implements OnInit, OnDestroy {
       ]),
       campusLikingArray: new FormArray([]),
       likelihood: new FormControl(''),
-      raffleNumbers: new FormControl('', [this.raffleFieldValidator]),
     });
 
     this.addCheckboxes();
@@ -105,23 +105,6 @@ export class FormComponent implements OnInit, OnDestroy {
     );
   }
 
-  raffleFieldValidator = (
-    control: AbstractControl
-  ): { [key: string]: any } | null => {
-    const value = control.value || false;
-    if (value) {
-      const numbers = value.split(',').map((num: string) => num.trim());
-      const isValid = numbers.every((num: string) => {
-        const parsed = parseInt(num, 10);
-        return !isNaN(parsed) && parsed >= 1 && parsed <= 100;
-      });
-      this.mainValid = isValid;
-    } else {
-      this.mainValid = false;
-    }
-    return this.mainValid ? null : { invalidRaffleNumbers: true };
-  };
-
   formHandler = (
     formControlName: string
   ): {
@@ -140,6 +123,34 @@ export class FormComponent implements OnInit, OnDestroy {
 
     const displayError = false;
     return { success, error, displayError };
+  };
+
+  generateErrorMessage = (): string => {
+    let errorMessage = `Please correct the following errors:<br>`;
+    // Loop through each form control to check for errors
+    Object.keys(this.surveyForm.controls).forEach((controlName) => {
+      const control = this.surveyForm.get(controlName)!;
+      // Check if the control has errors
+      if (control.invalid) {
+        // Loop through each validation error and append it to the error message
+        Object.keys(control.errors!).forEach((error) => {
+          errorMessage += `- ${this.getErrorMessage(controlName, error)}<br>`;
+        });
+      }
+    });
+    return errorMessage;
+  };
+
+  getErrorMessage = (controlName: string, error: string): string => {
+    switch (error) {
+      case 'required':
+        return `The <b>${controlName}</b> field is required.`;
+      case 'pattern':
+        return `Invalid <b>${controlName}</b>. Please enter a valid value.`;
+      // Add cases for other validation errors as needed
+      default:
+        return `Invalid <b>${controlName}.</b>`;
+    }
   };
 
   resetForm = () => {
@@ -183,14 +194,31 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.surveyForm.valid) {
       this.modalService.openModal(
         'Do you want to submit Survey Form?',
-        this.formModal
+        this.formModal,
+        false,
+        false,
+        ''
       );
       this.dataService.setFormPayload(formModel);
-      this.notificationService.addNotification('Form Submitted');
       this.surveyForm.reset();
     } else {
-      this.notificationService.addNotification('Form Error');
+      const errorMessage = this.sanitizeErrorMessage(
+        this.generateErrorMessage()
+      );
+      console.log(errorMessage);
+      this.modalService.openModal(
+        'Form Cannot be Submiited',
+        this.formModal,
+        true,
+        true,
+        errorMessage
+      );
     }
+  };
+
+  //Sanitizing HTML message using DOM Sanitizer
+  sanitizeErrorMessage = (message: string): SafeHtml => {
+    return this.sanitizer.bypassSecurityTrustHtml(message);
   };
 
   ngOnDestroy(): void {

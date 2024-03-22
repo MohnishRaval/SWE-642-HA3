@@ -1,6 +1,7 @@
 import { Injectable, TemplateRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DataService } from './data.service';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -11,22 +12,34 @@ export class ModalService {
     header: string;
     body: TemplateRef<any>;
     displayBody?: boolean;
+    isError: boolean;
+    errorMessage: SafeHtml;
   }>({
     display: 'none',
     header: '',
     body: null as any,
     displayBody: false,
+    isError: false,
+    errorMessage: '',
   });
   public modalContent$ = this.modalSubject.asObservable();
 
   constructor(private dataService: DataService) {}
 
-  openModal(header: string, body: TemplateRef<any>, displayBody = false) {
+  openModal(
+    header: string,
+    body: TemplateRef<any>,
+    displayBody: boolean = false,
+    isError: boolean = false,
+    errorMessage: SafeHtml = ''
+  ) {
     return this.modalSubject.next({
       display: 'block',
       header,
       body,
       displayBody,
+      isError,
+      errorMessage,
     });
   }
 
@@ -35,6 +48,9 @@ export class ModalService {
       display: 'none',
       header: '',
       body: null as any,
+      displayBody: false,
+      isError: false,
+      errorMessage: '',
     });
   }
 }

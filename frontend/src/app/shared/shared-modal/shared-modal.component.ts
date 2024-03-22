@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { FormPostModel } from 'src/app/models/PostModel';
@@ -16,6 +17,8 @@ export class SharedModalComponent implements OnInit, OnDestroy {
   header = '';
   body: TemplateRef<any> | null = null;
   displayBody: boolean = false;
+  isError: boolean = false;
+  errorMessage: SafeHtml = '';
   modalSubscriptions: Subscription[] = [];
   private formPayload!: FormPostModel;
 
@@ -32,21 +35,27 @@ export class SharedModalComponent implements OnInit, OnDestroy {
         header: string;
         displayBody?: boolean;
         body: TemplateRef<any>;
+        isError: boolean;
+        errorMessage: SafeHtml;
       }) => {
         this.display = content.display;
         this.header = content.header;
         this.body = content.body;
         this.displayBody = content?.displayBody ?? false;
+        this.isError = content.isError;
+        this.errorMessage = content.errorMessage;
       }
     );
     this.modalSubscriptions.push(modalContenSub);
-    const getFormPayload = this.dataService.formPayload$.subscribe(
-      (getFormData: FormPostModel) => {
-        this.formPayload = getFormData;
-      }
-    );
-    console.log(this.formPayload);
-    this.modalSubscriptions.push(getFormPayload);
+    if (!this.isError) {
+      const getFormPayload = this.dataService.formPayload$.subscribe(
+        (getFormData: FormPostModel) => {
+          this.formPayload = getFormData;
+        }
+      );
+      console.log(this.formPayload);
+      this.modalSubscriptions.push(getFormPayload);
+    }
   }
 
   closeModal() {

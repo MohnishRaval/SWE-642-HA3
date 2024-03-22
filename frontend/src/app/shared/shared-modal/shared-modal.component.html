@@ -8,13 +8,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" *ngIf="displayBody">
-                <ng-container *ngTemplateOutlet="body"></ng-container>
+            <div class="modal-body" *ngIf="displayBody" [innerHTML]="errorMessage">
+                <!-- <ng-container *ngIf="errorMessage; else bodyTemplate">{{ errorMessage }}</ng-container>
+                <ng-template #bodyTemplate>
+                    <ng-container *ngTemplateOutlet="body"></ng-container>
+                </ng-template> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()"
                     data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="this.isError==true"
                     (click)="submitModal()">Submit</button>
             </div>
         </div>
