@@ -27,17 +27,36 @@ export class SurveydataComponent implements OnInit, OnDestroy {
   @ViewChild('dynamicContent') dynamicContent!: TemplateRef<any>;
 
   columnDefs: ColDef[] = [
-    { field: 'firstName', headerName: 'First Name', width: 120 },
-    { field: 'lastName', headerName: 'Last Name', width: 120 },
-    { field: 'city', headerName: 'City', width: 120 },
-    { field: 'state', headerName: 'State', width: 80 },
-    { field: 'zipCode', headerName: 'Zipcode', width: 100 },
-    { field: 'phoneNumber', headerName: 'PhoneNumber', width: 130 },
-    { field: 'email', headerName: 'Email', width: 150 },
-    { field: 'date', headerName: 'Date', width: 120 },
-    { field: 'recommendation', headerName: 'Recommendation' },
+    {
+      field: 'firstName',
+      headerName: 'First Name',
+      flex: 1,
+      colId: 'firstNameId',
+    },
+    {
+      field: 'lastName',
+      headerName: 'Last Name',
+      flex: 1,
+      colId: 'lastNameId',
+    },
+    { field: 'city', headerName: 'City', flex: 1, colId: 'cityId' },
+    { field: 'state', headerName: 'State', flex: 1, colId: 'stateId' },
+    { field: 'zipCode', headerName: 'Zipcode', flex: 1, colId: 'zipCodeId' },
+    {
+      field: 'phoneNumber',
+      headerName: 'PhoneNumber',
+      flex: 1,
+      colId: 'phoneNumberId',
+    },
+    { field: 'email', headerName: 'Email', flex: 1, colId: 'emailId' },
+    { field: 'date', headerName: 'Date', colId: 'dateId', flex: 1 },
+    {
+      field: 'recommendation',
+      headerName: 'Recommendation',
+      colId: 'recommendationId',
+      flex: 1,
+    },
   ];
-
   constructor(
     private modalService: ModalService,
     private dataService: DataService,
