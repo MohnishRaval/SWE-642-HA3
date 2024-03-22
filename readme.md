@@ -13,7 +13,7 @@ ng serve --configuration production
 
 ## Overview
 
-This project sets up a continuous integration and continuous deployment (CI/CD) pipeline for a web application. The application consists of a frontend developed using Angular and a backend developed using Spring Boot. The CI/CD pipeline is orchestrated using GitHub Actions, and the application is deployed on AWS EC2 instances with Docker containers. The database used is Amazon RDS with MySQL.
+This is a **MonoRepo** project which sets up a continuous integration and continuous deployment (CI/CD) pipeline for a web application. The application consists of a frontend developed using Angular and a backend developed using Spring Boot. The CI/CD pipeline is orchestrated using GitHub Actions, and the application is deployed on AWS EC2 instance with Docker containers. The database used is Amazon RDS with MySQL.
 
 ## Hosting
 
@@ -29,13 +29,13 @@ The application is hosted on http://ec2-18-235-217-2.compute-1.amazonaws.com:420
 
 4. **GitHub Actions Workflow**: The CI/CD pipeline is defined using GitHub Actions. It automates the build, testing, and deployment process whenever code changes are pushed to the main branch of the GitHub repository.
 
-5. **Docker Containers**: Both the frontend and backend applications are packaged as Docker containers for easy deployment and portability. These containers are orchestrated using Docker Compose on AWS EC2 instances.
+5. **Docker Containers**: Both the frontend and backend applications are packaged as Docker containers for easy deployment and portability. These containers are orchestrated using Docker on AWS EC2 instance.
 
 6. **Cleanup Script**: The cleanup.sh script stops and removes existing Docker containers and images related to the application.
 
 7. **Development/Test Script**: The dev-test.sh script cleans up existing containers and images and then builds and runs new containers for both the frontend and backend components in a development or test environment.
 
-8. **EC2 Instances**: The Docker containers are deployed and run on AWS EC2 instances. The frontend container is exposed on port 4200, while the backend container is exposed on port 8080.
+8. **EC2 Instance**: The Docker containers are deployed and run on AWS EC2 instance. The frontend container is exposed on port 4200, while the backend container is exposed on port 8080.
 
 ## Workflow Description
 
