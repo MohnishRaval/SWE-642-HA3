@@ -59,10 +59,9 @@ The application is hosted on http://ec2-18-235-217-2.compute-1.amazonaws.com:420
 ## Contributors
 
 - **Mohnish Raval** - G01373613
-- **FNU Niharika** -
+- **FNU Niharika** - G01412073
+- **Syedfurkhan Feroz Hashmi** - G01411748
 
 ## License
 
 This project is licensed under the MIT License
-
-This README provides a comprehensive overview of the project, including its components, workflow, setup instructions, contributors, license, and acknowledgments. Adjustments can be made based on your specific project details and requirements.
