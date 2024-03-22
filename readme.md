@@ -1,6 +1,3 @@
-#Mock Angular Prod
-ng serve --configuration production
-
 # Project Name: SWE-642 CI/CD Pipeline with Angular Frontend and Spring Boot Backend
 
 ## Application Workflow
@@ -55,6 +52,7 @@ The application is hosted on http://ec2-18-235-217-2.compute-1.amazonaws.com:420
 2. Ensure you have Docker installed and configured on your local machine.
 3. Update the GitHub Actions workflow file with your Docker Hub credentials and EC2 SSH key.
 4. Push your code changes to the main branch of the GitHub repository to trigger the CI/CD pipeline.
+5. For Angular Production Mocking on Local use Command: ng serve --configuration production
 
 ## Contributors
 
