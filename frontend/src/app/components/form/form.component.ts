@@ -65,7 +65,10 @@ export class FormComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern('[a-zA-Z ]+'),
       ]),
-      state: new FormControl('[a-zA-Z ]+', [Validators.required]),
+      state: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]+'),
+      ]),
       zipCode: new FormControl('', [
         Validators.required,
         Validators.pattern('[0-9]{5}'),
