@@ -80,6 +80,7 @@ export class FormComponent implements OnInit, OnDestroy {
       ]),
       campusLikingArray: new FormArray([]),
       likelihood: new FormControl(''),
+      comments: new FormControl(''),
     });
 
     this.addCheckboxes();
