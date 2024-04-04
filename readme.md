@@ -59,6 +59,8 @@ The application is hosted on http://ec2-18-235-217-2.compute-1.amazonaws.com:420
 - **Mohnish Raval** - G01373613
 - **FNU Niharika** - G01412073
 - **Syedfurkhan Feroz Hashmi** - G01411748
+- **Rana Alshehri** - G01321813
+- **Kirthika Natarajan** - G01414831
 
 ## License
 
