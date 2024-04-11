@@ -23,7 +23,8 @@ export class ModalService {
     errorMessage: '',
   });
   public modalContent$ = this.modalSubject.asObservable();
-
+  private surveyEditModalSubject = new BehaviorSubject<any>(null);
+  public surveyEditModal$ = this.surveyEditModalSubject.asObservable();
   constructor(private dataService: DataService) {}
 
   openModal(
@@ -53,4 +54,12 @@ export class ModalService {
       errorMessage: '',
     });
   }
+
+  openSurveyEditModal(rowData: any) {
+    this.surveyEditModalSubject.next(rowData);
+  }
+
+  // closeSurveyEditModal() {
+  //   this.surveyEditModalSubject.next(false);
+  // }
 }

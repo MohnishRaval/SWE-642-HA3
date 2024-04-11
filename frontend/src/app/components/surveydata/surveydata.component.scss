@@ -1,7 +1,98 @@
-.surveydata-main-container{
-    position: relative;
-    display: flex;
-    flex-grow: 1;
-    margin-top: 3%;
-    border: 1px solid black;
-  }
+.surveydata-main-container {
+  position: relative;
+  height: 90vh;
+  padding-top: 3rem;
+}
+
+.ag-theme-alpine {
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.showmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90vh; /* Limit modal height to 90% of viewport height */
+  max-width: 90vw; /* Limit modal width to 90% of viewport width */
+  overflow: auto; /* Enable scrolling if content exceeds modal dimensions */
+  border: 1px solid black;
+  z-index: 1000;  
+  background-color: white;
+  display: none;
+  border-radius: 1rem;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  background-color: gainsboro;
+}
+
+.modal-header .modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.form-group {
+  width: 100%; /* Ensure form fields take full width */
+  max-height: 50vh; /* Limit height of form-group */
+  overflow-y: auto;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem; /* Add spacing between labels */
+}
+
+.form-control {
+  width: 100%; /* Ensure form controls take full width */
+  margin-bottom: 1rem; /* Add spacing between form controls */
+}
+
+.form-control:disabled {
+  cursor: not-allowed;
+}
+
+
+.close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button,
+.edit-button {
+  cursor: pointer;
+  border-radius: 0.5px;
+  padding: 5px 10px;
+}
+
+/* Define styles for button hover */
+.delete-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: yellow;
+  color: black;
+}

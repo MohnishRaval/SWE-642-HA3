@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class ViewSurveyDetailsDTO {
+	private Integer surveyId;
 	private String firstName;
 	private String lastName;
 	private String streetAddress;
@@ -27,12 +28,13 @@ public class ViewSurveyDetailsDTO {
 	private String recommendation;
 	private String raffleNumbers;
 	private Boolean won;
-	public ViewSurveyDetailsDTO(String firstName, String lastName, String streetAddress, String city, String state,
+	public ViewSurveyDetailsDTO(Integer surveyId,String firstName, String lastName, String streetAddress, String city, String state,
 			String zipCode, String phoneNumber, String email, Date date, Boolean optionStudent, Boolean optionLocation,
 			Boolean optionCampus, Boolean optionAtmosphere, Boolean optionDormRooms, Boolean optionSports,
 			String recommendation, String raffleNumbers, Boolean won) {
 		super();
 		this.firstName = firstName;
+		this.surveyId=surveyId;	
 		this.lastName = lastName;
 		this.streetAddress = streetAddress;
 		this.city = city;

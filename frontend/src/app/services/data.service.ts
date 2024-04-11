@@ -22,6 +22,7 @@ export class DataService {
   pageSize = 20;
 
   //FORM Methods
+  //Save Form Details
   saveFormDetails(formModel: FormPostModel) {
     return this.http
       .post<FormPostModel>(`${environment.API_URL}/form/submit`, formModel)
@@ -38,10 +39,12 @@ export class DataService {
       );
   }
 
+  //Fetch Form Details
   fetchFormDetails() {
     return this.http.get(`${environment.API_URL}/form/viewAllRecords`);
   }
 
+  //set Form Payload
   setFormPayload(formData: any) {
     this.formPayloadSubject.next(formData);
   }
@@ -51,6 +54,44 @@ export class DataService {
     this.formAPISucessSubject.next(success);
   }
 
+  //Delete Survey Record
+  deleteSurveyRecord(id: number) {
+    return this.http
+      .delete(`${environment.API_URL}/form/deleteRecord/${id}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = 'Some Error Occurred';
+          if (error.status === 400) {
+            errorMessage = 'Invalid Form Data';
+          } else if (error.status === 500) {
+            errorMessage = 'Server Error Occurred';
+          }
+          return throwError(errorMessage);
+        })
+      );
+  }
+
+  //Update Survey Record
+  updateSurveyRecord(id: number, formModel: FormPostModel) {
+    return this.http
+      .put<FormPostModel>(
+        `${environment.API_URL}/form/updateRecord/${id}`,
+        formModel
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = 'Some Error Occurred';
+          if (error.status === 400) {
+            errorMessage = 'Invalid Form Data';
+          } else if (error.status === 500) {
+            errorMessage = 'Server Error Occurred';
+          }
+          return throwError(errorMessage);
+        })
+      );
+  }
+
+  // RXJS-Playground Functions
   //RXJS-Playground
   getTodos() {
     const usersUrl = 'https://jsonplaceholder.typicode.com/users';

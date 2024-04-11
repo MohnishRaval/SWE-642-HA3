@@ -1,10 +1,63 @@
-<!-- <ng-template #dynamicContent>
-    <p>i am good</p>
-</ng-template> -->
-
-
-<div class="surveydata-main-container" style="height: 90vh;">
-    <ag-grid-angular style="height: 100%; margin: 0 auto; width: 90%;" class="ag-theme-alpine" [rowData]="rowData"
+<div class="surveydata-main-container">
+    <ag-grid-angular class="ag-theme-alpine" [rowData]="rowData" (cellClicked)="onCellClicked($event)"
         [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="15">
     </ag-grid-angular>
+
+    <div class="showmodal" [ngStyle]="{'display': display}" id="editmodal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{modalHeaderName}}</h5>
+                    <button type="button" class="btn btn-danger"
+                        (click)="handleDelete ? deleteRecord() : updateRecord()">
+                        {{ handleDelete ? 'Delete' : 'Edit' }}
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="closeModal()">
+                        <span>&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="surveyId">Survey ID:</label>
+                        <input type="text" class="form-control" id="surveyId" [disabled]="true"
+                            [(ngModel)]="modalData.surveyId" readonly>
+
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.firstName">
+
+                        <label for="firstName">Last Name:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.lastName">
+
+                        <label for="firstName">City:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.city">
+
+                        <label for="firstName">State:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.state">
+
+                        <label for="firstName">ZipCode:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.zipCode">
+
+                        <label for="firstName">Phone Number:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.phoneNumber">
+
+                        <label for="firstName">Email:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.email">
+
+                        <label for="firstName">Date:</label>
+                        <input type="text" class="form-control" id="firstName" [disabled]="handleDelete==true"
+                            [(ngModel)]="modalData.data" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

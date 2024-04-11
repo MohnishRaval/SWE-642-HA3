@@ -6,6 +6,7 @@ export interface IPost {
 }
 
 export class FormPostModel {
+  surveyId!: number;
   firstName!: string;
   lastName!: string;
   streetAddress!: string;

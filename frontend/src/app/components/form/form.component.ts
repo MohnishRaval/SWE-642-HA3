@@ -129,6 +129,7 @@ export class FormComponent implements OnInit, OnDestroy {
     return { success, error, displayError };
   };
 
+  // Generate error message for invalid form fields
   generateErrorMessage = (): string => {
     let errorMessage = `Please correct the following errors:<br>`;
     // Loop through each form control to check for errors
@@ -145,6 +146,7 @@ export class FormComponent implements OnInit, OnDestroy {
     return errorMessage;
   };
 
+  // Get error message based on validation error
   getErrorMessage = (controlName: string, error: string): string => {
     switch (error) {
       case 'required':
@@ -157,6 +159,7 @@ export class FormComponent implements OnInit, OnDestroy {
     }
   };
 
+  // Reset form fields
   resetForm = () => {
     this.spinnerService.show('Resetting From Data', 2000);
     const checkedBox = this.surveyForm.get('campusLikingArray') as FormArray;
@@ -171,6 +174,7 @@ export class FormComponent implements OnInit, OnDestroy {
     }, 2000);
   };
 
+  // Submit form data
   submitForm = (): void => {
     const selectedCheckBoxes = this.surveyForm.value.campusLikingArray
       .map((checked: any, index: any) =>
